@@ -44,8 +44,8 @@ export default function ContactPage() {
     <div ref={scrollRef} className="flex min-h-screen flex-col">
       <Navbar />
       
-      <main className="flex-1 pt-24 md:pt-32">
-        <section className="pt-16 pb-24 md:pb-32">
+      <main className="flex-1 pt-32">
+        <section className="pb-24 md:pb-32">
           <div className="container-custom">
             <SectionHeader 
               tagName="Get in Touch"

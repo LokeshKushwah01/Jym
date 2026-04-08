@@ -26,7 +26,7 @@ export function SectionHeader({
           {tagName}
         </span>
       )}
-      <h2 className="text-5xl md:text-8xl lg:text-9xl font-extrabold uppercase tracking-tighter leading-[1.05] text-balance">
+      <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tighter leading-[1.1] text-balance">
         {title}
       </h2>
       {subtitle && (

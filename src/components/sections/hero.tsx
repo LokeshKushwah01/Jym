@@ -26,7 +26,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
       {/* Cinematic Background */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -40,9 +40,9 @@ export function Hero() {
       </div>
 
       <div className="container-custom relative z-10 text-center">
-        <div className="hero-content space-y-8">
+        <div className="hero-content space-y-6 max-w-5xl mx-auto">
           
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold uppercase leading-[1.15] tracking-tight text-balance">
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-extrabold uppercase leading-[1.05] tracking-tight text-balance">
             Build Your <br />
             <span className="text-accent underline decoration-accent/20 underline-offset-[12px] decoration-4">Legacy</span>
           </h1>
@@ -51,7 +51,7 @@ export function Hero() {
             Gwalior's premier fitness destination. Premium equipment, elite trainers, and a pursuit of excellence that never ends.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 items-center justify-center pt-8">
+          <div className="flex flex-col sm:flex-row gap-6 items-center justify-center pt-4">
             <Button size="lg" variant="accent" className="w-full sm:w-auto font-extrabold uppercase tracking-widest group h-16 px-10 rounded-2xl shadow-xl shadow-accent/20" asChild>
               <Link href="/membership">
                 Start Training

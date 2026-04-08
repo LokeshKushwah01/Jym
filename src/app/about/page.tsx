@@ -42,16 +42,16 @@ export default function AboutPage() {
     <div ref={scrollRef} className="flex min-h-screen flex-col">
       <Navbar />
 
-      <main className="flex-1 pt-32 pb-20">
+      <main className="flex-1 pt-32">
         {/* About Hero */}
         <section className="section-padding">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto space-y-12">
               <div className="space-y-6 reveal text-center">
                 <Badge variant="accent" className="uppercase tracking-[0.3em] font-black px-6 py-2">Our Legacy</Badge>
-                <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9]">
-                  Two locations. <br />
-                  <span className="text-accent underline decoration-4 underline-offset-8">One standard.</span>
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[1.1]">
+                  Beyond Fitness. <br />
+                  <span className="text-accent underline decoration-4 underline-offset-8">This is the standard.</span>
                 </h1>
                 <p className="text-muted text-xl md:text-2xl leading-relaxed font-medium pt-8">
                   Founded in 2018, JY Gymnasium was born from a simple observation: Gwalior deserved a fitness standard that rivaled any global city.
@@ -126,18 +126,40 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Global Standards */}
         <section className="section-padding bg-background">
           <div className="container-custom">
-            <div className="bg-foreground text-background p-12 md:p-24 rounded-sm flex flex-col md:flex-row gap-12 items-center justify-between reveal">
-              <div className="space-y-4 max-w-xl">
-                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">Global Standards, Local Community.</h2>
-                <p className="text-background/70 text-lg uppercase font-bold tracking-widest pt-4">We are certified by global fitness bodies and maintain equipment from international brands like Hammer Strength and Lifefitness.</p>
+            <div className="bg-foreground text-background p-12 md:p-20 rounded-3xl flex flex-col lg:flex-row gap-16 items-center reveal overflow-hidden relative">
+               <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[100px] -mr-32 -mt-32" />
+              
+              <div className="space-y-8 max-w-2xl relative z-10 text-center lg:text-left">
+                <Badge variant="accent" className="bg-accent text-accent-foreground border-none px-4 py-1">Partnerships</Badge>
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[1.1] text-balance">
+                    Global Standards, <br /> 
+                    <span className="text-accent/80">Local Community.</span>
+                </h2>
+                <p className="text-background/60 text-lg font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    We maintain strict international certification standards, housing world-class equipment from the industry's most trusted manufacturers.
+                </p>
               </div>
-              <div className="flex flex-col gap-4 w-full md:w-auto">
-                {["HAMMER STRENGTH®", "LIFEFITNESS®", "ROGUE®", "ELEIKO®"].map((brand) => (
-                  <div key={brand} className="text-2xl font-display font-black tracking-tighter text-background/20 hover:text-accent transition-colors cursor-default select-none border-b border-background/10 py-2">
-                    {brand}
+
+              <div className="grid grid-cols-2 gap-4 w-full relative z-10">
+                {[
+                  { name: "HAMMER STRENGTH®", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop" },
+                  { name: "LIFEFITNESS®", img: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1000&auto=format&fit=crop" },
+                  { name: "ROGUE®", img: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1000&auto=format&fit=crop" },
+                  { name: "ELEIKO®", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop" }
+                ].map((brand) => (
+                  <div key={brand.name} className="group/brand relative bg-surface border border-background/10 rounded-2xl flex items-center justify-center text-center transition-all hover:bg-accent/10 hover:border-accent/30 min-h-[140px] overflow-hidden">
+                    <Image 
+                      src={brand.img}
+                      alt={brand.name}
+                      fill
+                      className="object-cover opacity-20 grayscale transition-all group-hover/brand:opacity-40 group-hover/brand:grayscale-0 group-hover/brand:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-80" />
+                    <span className="relative z-10 text-xs sm:text-sm md:text-base font-display font-black tracking-tighter text-white group-hover/brand:text-accent transition-colors leading-tight text-balance px-4">
+                        {brand.name}
+                    </span>
                   </div>
                 ))}
               </div>
