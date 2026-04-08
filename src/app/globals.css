@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #B8963E;
+  --accent-foreground: #FFFFFF;
+  --accent-muted: color-mix(in srgb, var(--accent) 15%, transparent);
+  --bg: #FCFBFA; /* warmer soft white */
+  --surface: #FFFFFF;
+  --text: #1C1C1E; /* balanced dark */
+  --muted: #636366; /* balanced gray */
+  --border: #E5E5EA; /* soft border */
+  --radius: 0.75rem;
+}
+
+.dark {
+  --accent: #D4A853;
+  --accent-foreground: #000000;
+  --accent-muted: color-mix(in srgb, var(--accent) 20%, transparent);
+  --bg: #0C0C0D; /* rich deep black */
+  --surface: #1C1C1E; /* surface elevation */
+  --text: #F2F2F7; /* soft white text */
+  --muted: #8E8E93; /* dark mode muted */
+  --border: #2C2C2E; /* subtle dark border */
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-inter), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-syne), sans-serif;
+    font-weight: 700; /* bold for a more premium, less aggressive look */
+    letter-spacing: -0.01em;
+    color: var(--text);
+    line-height: 1.25;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-width: 1px;
+    border-style: solid;
+    background-color: color-mix(in srgb, var(--bg) 60%, transparent);
+    border-color: color-mix(in srgb, var(--border) 40%, transparent);
+  }
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .container-custom {
+    width: 100%;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  @layer utilities {
+    .section-padding {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+    .container-custom {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+}
+
+/* GSAP Hidden Initial State */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.reveal-fade {
+  opacity: 0;
+}
