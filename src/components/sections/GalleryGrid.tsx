@@ -21,13 +21,10 @@ if (typeof window !== "undefined") {
 interface GalleryGridProps {
   images: GalleryImage[];
 }
-
 const categories = ["all", "facilities", "equipment", "classes", "transformations", "events"];
-const gyms = ["all", "JY Gymnasium", "JY Gymnasium 2.0"];
 
 export default function GalleryGrid({ images }: GalleryGridProps) {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [activeGym, setActiveGym] = useState("all");
   const [visibleImages, setVisibleImages] = useState(images);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   
@@ -39,10 +36,8 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
   }, [images]);
 
   // Handle filter change with GSAP
-  const handleFilter = (type: "category" | "gym", value: string) => {
-    // If clicking same filter, do nothing
-    if (type === "category" && activeCategory === value) return;
-    if (type === "gym" && activeGym === value) return;
+  const handleFilter = (value: string) => {
+    if (activeCategory === value) return;
 
     const items = gsap.utils.toArray(".gallery-item");
     
@@ -53,21 +48,10 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
       stagger: 0.01,
       ease: "power2.inOut",
       onComplete: () => {
-        let nextCat = activeCategory;
-        let nextGym = activeGym;
-        
-        if (type === "category") {
-            nextCat = value;
-            setActiveCategory(value);
-        } else {
-            nextGym = value;
-            setActiveGym(value);
-        }
+        setActiveCategory(value);
         
         const newFiltered = images.filter(img => {
-            const catMatch = nextCat === "all" || img.category === nextCat;
-            const gymMatch = nextGym === "all" || img.gym === nextGym || img.gym === "both";
-            return catMatch && gymMatch;
+            return value === "all" || img.category === value;
         });
         
         setVisibleImages(newFiltered);
@@ -125,7 +109,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => handleFilter("category", cat)}
+              onClick={() => handleFilter(cat)}
               className={cn(
                 "px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all",
                 activeCategory === cat 
@@ -138,28 +122,6 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
           ))}
         </div>
         
-        <div className="flex flex-wrap items-center gap-6">
-          <div className="flex items-center gap-3">
-             <span className="w-8 h-px bg-accent/20" />
-             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/20">Elite Locations</span>
-          </div>
-          <div className="flex gap-6">
-            {gyms.map((gym) => (
-              <button
-                key={gym}
-                onClick={() => handleFilter("gym", gym)}
-                className={cn(
-                  "text-[10px] font-black uppercase tracking-[0.3em] transition-all relative py-1",
-                  activeGym === gym 
-                    ? "text-accent after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:rounded-full" 
-                    : "text-foreground/40 hover:text-foreground"
-                )}
-              >
-                {gym === "all" ? "All Gyms" : gym}
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Masonry Grid */}
