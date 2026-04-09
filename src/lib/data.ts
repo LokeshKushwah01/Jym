@@ -1,6 +1,7 @@
 import { Gym } from "@/types/gym";
 import { Trainer } from "@/types/trainer";
 import { ClassSlot } from "@/types/schedule";
+import { GalleryImage } from "@/types/gallery";
 
 export const gyms: Gym[] = [
   {
@@ -79,4 +80,21 @@ export const faqs = [
   { q: "What is the minimum age?", a: "16 years with parental consent, 18+ independently." },
   { q: "Are personal trainers included?", a: "1 PT session/month on Pro, unlimited on Elite." },
   { q: "What if I want to cancel?", a: "Cancel anytime — month-to-month, no lock-in." }
+];
+
+export const galleryImages: GalleryImage[] = [
+  { id: "g1", src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop", alt: "Elite Training Floor at Alpha", category: "facilities", gym: "JY Gymnasium", width: 1200, height: 800, featured: true },
+  { id: "g2", src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=2070&auto=format&fit=crop", alt: "Olympic-sized Infinity Pool", category: "facilities", gym: "JY Gymnasium", width: 1200, height: 900, featured: true },
+  { id: "g3", src: "https://images.unsplash.com/photo-1594911772125-07fc7a2d8d9f?q=80&w=2070&auto=format&fit=crop", alt: "Luxury Finnish Sauna Room", category: "facilities", gym: "JY Gymnasium", width: 800, height: 1000, featured: false },
+  { id: "g4", src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop", alt: "Pro-Grade CrossFit Arena", category: "facilities", gym: "JY Gymnasium 2.0", width: 1200, height: 800, featured: true },
+  { id: "g5", src: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2070&auto=format&fit=crop", alt: "Zen Yoga & Meditation Studio", category: "classes", gym: "JY Gymnasium 2.0", width: 1200, height: 800, featured: true },
+  { id: "g6", src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop", alt: "Panoramic Cardio Zone", category: "facilities", gym: "JY Gymnasium 2.0", width: 1600, height: 900, featured: true },
+  { id: "g7", src: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop", alt: "Elite Free Weights Section", category: "equipment", gym: "JY Gymnasium", width: 1200, height: 800, featured: false },
+  { id: "g8", src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=2070&auto=format&fit=crop", alt: "Smart Technology Cardio Bay", category: "equipment", gym: "JY Gymnasium 2.0", width: 1200, height: 750, featured: false },
+  { id: "g9", src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop", alt: "High-Intensity Interval Training", category: "classes", gym: "JY Gymnasium", width: 1200, height: 800, featured: false },
+  { id: "g10", src: "https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=2070&auto=format&fit=crop", alt: "Advanced Strength Coaching", category: "classes", gym: "JY Gymnasium 2.0", width: 800, height: 1000, featured: false },
+  { id: "g11", src: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2070&auto=format&fit=crop", alt: "Transformation Milestones", category: "transformations", gym: "both", width: 800, height: 1000, featured: true },
+  { id: "g12", src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop", alt: "Achievement & Progress", category: "transformations", gym: "both", width: 800, height: 1000, featured: false },
+  { id: "g13", src: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=2070&auto=format&fit=crop", alt: "IronEdge Annual Marathon", category: "events", gym: "both", width: 1600, height: 900, featured: false },
+  { id: "g14", src: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1974&auto=format&fit=crop", alt: "Elite Membership Open House", category: "events", gym: "both", width: 1200, height: 800, featured: false },
 ];

@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,6 +11,7 @@ import { cn } from "@/lib/utils";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Membership", href: "/membership" },
   { name: "Contact", href: "/contact" },
 ];

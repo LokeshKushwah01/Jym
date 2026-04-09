@@ -62,6 +62,7 @@ export function Footer() {
             <ul className="space-y-4 md:text-right">
               {[
                 { name: "Our Story", href: "/about" },
+                { name: "Gym Gallery", href: "/gallery" },
                 { name: "Membership Plans", href: "/membership" },
                 { name: "Contact Us", href: "/contact" }
               ].map((link) => (
