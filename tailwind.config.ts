@@ -13,11 +13,12 @@ const config: Config = {
         accent: {
           DEFAULT: "var(--accent)",
           muted: "var(--accent-muted)",
+          foreground: "var(--accent-foreground)",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        display: ["var(--font-syne)", "sans-serif"],
+        sans: ["var(--font-montserrat)", "sans-serif"],
+        display: ["var(--font-poppins)", "sans-serif"],
       },
       backgroundColor: {
         background: "var(--bg)",

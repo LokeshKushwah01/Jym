@@ -1,33 +1,35 @@
 import type { Metadata } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Poppins, Montserrat } from "next/font/google";
 import React from "react";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { ThemeProvider } from "../components/providers/theme-provider";
 import { gyms } from "../lib/data";
 
-const inter = Inter({ 
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-poppins",
   display: "swap",
+  weight: ["400", "600", "700", "800"],
 });
 
-const syne = Syne({ 
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-syne",
+  variable: "--font-montserrat",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: {
     template: "%s | JY Gymnasium",
-    default: "JY Gymnasium",
+    default: "JY Gymnasium — Transform Your Body. Transform Your Life.",
   },
-  description: "Gwalior's premium fitness destination. Experience world-class equipment, certified trainers, and a community that pushes you to be your best.",
-  keywords: ["Gym", "Fitness", "Gwalior", "Personal Training", "Yoga", "CrossFit"],
+  description: "Push your limits and become the strongest version of yourself. Gwalior's premier fitness destination — certified coaches, world-class equipment, proven results.",
+  keywords: ["Gym", "Fitness", "Gwalior", "Personal Training", "Yoga", "CrossFit", "Weight Loss", "Muscle Gain", "Transformation"],
   openGraph: {
-    title: "JY Gymnasium",
-    description: "Premium fitness in Gwalior.",
+    title: "JY Gymnasium — Transform Your Body. Transform Your Life.",
+    description: "Push your limits and become the strongest version of yourself in 90 days.",
     type: "website",
     locale: "en_IN",
   },
@@ -42,26 +44,26 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ExerciseGym",
     "@id": `https://jygym.com/#${gym.id}`,
-    "name": gym.name,
-    "address": {
+    name: gym.name,
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": gym.address,
-      "addressLocality": "Gwalior",
-      "addressRegion": "MP",
-      "postalCode": gym.city.split(" ").pop(),
-      "addressCountry": "IN"
+      streetAddress: gym.address,
+      addressLocality: "Gwalior",
+      addressRegion: "MP",
+      postalCode: gym.city.split(" ").pop(),
+      addressCountry: "IN",
     },
-    "telephone": gym.phone,
-    "url": "https://jygym.com",
-    "openingHours": `Mo-Sa ${gym.hours.weekday}, Su ${gym.hours.weekend}`
+    telephone: gym.phone,
+    url: "https://jygym.com",
+    openingHours: `Mo-Sa ${gym.hours.weekday}, Su ${gym.hours.weekend}`,
   }));
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${syne.variable}`}>
+      <body className={`${poppins.variable} ${montserrat.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
