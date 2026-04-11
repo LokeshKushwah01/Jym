@@ -37,13 +37,28 @@ export default function PricingPage() {
       <Navbar />
       <main className="flex-1 pt-20">
         {/* Hero */}
-        <section className="py-24 md:py-32 bg-[#0B0B0B] text-center relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
+        <section 
+          style={{
+            minHeight: '50vh',
+            paddingTop: '100px',
+            paddingBottom: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#0B0B0B',
+            textAlign: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+        >
           <div className="container-custom relative z-10 space-y-6">
             <Badge variant="accent" className="uppercase tracking-[0.2em] font-bold px-5 py-1.5">Pricing</Badge>
-            <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tighter text-balance">
+            <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tighter text-balance uppercase">
               Invest in <span className="text-gradient-gold">Yourself</span>
             </h1>
+            <p className="text-white/40 text-lg md:text-xl font-sans font-medium max-w-2xl mx-auto">
+              Choose the tier that matches your ambition. High-performance coaching for all levels.
+            </p>
           </div>
         </section>
 
@@ -57,13 +72,13 @@ export default function PricingPage() {
         {/* Gym Selector */}
         <section className="py-10 bg-[#0B0B0B]">
           <div className="container-custom">
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               {gyms.map((gym) => (
                 <button
                   key={gym.id}
                   onClick={() => setSelectedGym(gym.id)}
                   className={cn(
-                    "px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all",
+                    "px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all w-full sm:w-auto",
                     selectedGym === gym.id
                       ? "btn-primary"
                       : "card-glass text-muted hover:text-foreground hover:border-accent/30"

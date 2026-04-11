@@ -124,18 +124,18 @@ export const programs = [
 ];
 
 export const galleryItems = [
-  { id: "gl1", label: "Gym Floor", category: "Gym Tour", height: "h-[280px]" },
-  { id: "gl2", label: "Equipment Room", category: "Equipment", height: "h-[360px]" },
-  { id: "gl3", label: "Weight Rack", category: "Equipment", height: "h-[200px]" },
-  { id: "gl4", label: "Group HIIT Class", category: "Classes", height: "h-[280px]" },
-  { id: "gl5", label: "Transformation — Rahul", category: "Transformations", height: "h-[360px]" },
-  { id: "gl6", label: "Annual Fitness Meet", category: "Events", height: "h-[200px]" },
-  { id: "gl7", label: "Cardio Zone", category: "Gym Tour", height: "h-[280px]" },
-  { id: "gl8", label: "Olympic Lifting Area", category: "Equipment", height: "h-[360px]" },
-  { id: "gl9", label: "Yoga Studio", category: "Classes", height: "h-[200px]" },
-  { id: "gl10", label: "Transformation — Priya", category: "Transformations", height: "h-[280px]" },
-  { id: "gl11", label: "Member Day Event", category: "Events", height: "h-[360px]" },
-  { id: "gl12", label: "Transformation — Amit", category: "Transformations", height: "h-[200px]" },
+  { id: 1, label: '[ Weight Training Floor ]', category: 'Gym Tour', height: 280 },
+  { id: 2, label: '[ Battle Ropes Area ]', category: 'Equipment', height: 220 },
+  { id: 3, label: '[ Member — 90 Day Result ]', category: 'Transformations', height: 320 },
+  { id: 4, label: '[ Cardio Zone ]', category: 'Equipment', height: 240 },
+  { id: 5, label: '[ Group HIIT Class ]', category: 'Classes', height: 260 },
+  { id: 6, label: '[ Member — 90 Day Result ]', category: 'Transformations', height: 300 },
+  { id: 7, label: '[ Gym Entrance ]', category: 'Gym Tour', height: 220 },
+  { id: 8, label: '[ Annual Fitness Event ]', category: 'Events', height: 280 },
+  { id: 9, label: '[ Spinning Class ]', category: 'Classes', height: 240 },
+  { id: 10, label: '[ Free Weights Rack ]', category: 'Equipment', height: 260 },
+  { id: 11, label: '[ Member Milestone Celebration ]', category: 'Events', height: 220 },
+  { id: 12, label: '[ Member — 90 Day Result ]', category: 'Transformations', height: 340 },
 ];
 
 export const transformations = [

@@ -13,8 +13,9 @@ import { SectionHeader } from "../../components/ui/section-header";
 import { WhatsAppButton } from "../../components/ui/whatsapp-button";
 import { GsapReveal, GsapParallax } from "../../components/ui/gsap-reveal";
 import { Badge } from "../../components/ui/badge";
-import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
+import { MagnifyingGlass, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { galleryItems, transformations } from "../../lib/data";
+import { cn } from "@/lib/utils";
 
 const categories = ["All", "Transformations", "Equipment", "Classes", "Events", "Gym Tour"];
 
@@ -28,128 +29,116 @@ export default function GalleryPage() {
   }, [activeCategory]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-[#0B0B0B]">
       <Navbar />
-      <main className="flex-1 pt-20">
-        {/* Hero */}
-        <section className="relative py-24 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-[#0B0B0B]" />
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px]" />
-          </div>
-          <div className="container-custom relative z-10 text-center space-y-6">
-            <Badge variant="accent" className="uppercase tracking-[0.2em] font-bold px-5 py-1.5">Gallery</Badge>
-            <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tighter text-balance">
-              Real People. <span className="text-gradient-gold">Real Results.</span>
+      <main className="flex-1">
+        {/* Header Section */}
+        <section 
+          style={{
+            minHeight: '50vh',
+            paddingTop: '100px',
+            paddingBottom: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#0B0B0B',
+            textAlign: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+        >
+          <div className="container-custom relative z-10 space-y-8 px-6">
+            <Badge variant="accent" className="uppercase tracking-[0.3em] font-bold px-6 py-2">Visual Narrative</Badge>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-black tracking-tight leading-[1.05] text-white text-balance max-w-5xl mx-auto uppercase">
+               Real People. <span className="text-gradient-gold">Real Results.</span>
             </h1>
-            <p className="text-muted text-lg font-sans max-w-xl mx-auto">
-              Every photo here is a story of discipline, sweat, and transformation. Yours could be next.
+            <p className="text-white/40 text-lg md:text-xl font-sans font-medium max-w-2xl mx-auto">
+              Every photograph is documented evidence of discipline, grit, and the pursuit of human excellence.
             </p>
           </div>
         </section>
 
-        {/* Parallax Gallery Strip */}
-        <section className="relative h-[400px] overflow-hidden">
-          <GsapParallax speed={0.3} className="absolute inset-0">
-            <div className="absolute inset-0 flex gap-3">
-              {["/images/gym_alpha.png", "/images/hero_bg.png", "/images/gym_beta.png", "/images/trainer_vikram.png"].map((src, i) => (
-                <div key={i} className="relative flex-1 min-w-[25%]">
-                  <Image src={src} alt={`Gallery parallax ${i + 1}`} fill className="object-cover" />
+        {/* Gallery Filter & Grid */}
+        <section className="section-padding bg-[#0B0B0B]">
+          <div className="container-custom">
+            <div className="flex justify-center mb-12">
+              <div className="flex flex-wrap justify-center gap-4">
+                {categories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={cn(
+                      "px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all",
+                      activeCategory === cat ? "bg-accent text-black" : "bg-white/5 text-white/40 hover:bg-white/10"
+                    )}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+              {filtered.map((item) => (
+                <div
+                  key={item.id}
+                  style={{
+                    height: item.height,
+                    background: '#1C1C1E',
+                    border: '1px solid #2C2C2E',
+                    borderRadius: '10px',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px',
+                    textAlign: 'center'
+                  }}
+                  className="group"
+                >
+                  {item.category && (
+                    <span style={{ 
+                      position: 'absolute', top: 16, left: 16, 
+                      fontSize: 10, fontWeight: 700, color: '#D4A853',
+                      textTransform: 'uppercase', letterSpacing: '0.1em'
+                    }}>
+                      {item.category}
+                    </span>
+                  )}
+                  <div style={{ 
+                    fontFamily: 'Poppins, sans-serif', fontSize: 18, 
+                    fontWeight: 700, color: '#D4A853', marginBottom: 8 
+                  }}>
+                    {item.label}
+                  </div>
+                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)', fontWeight: 500 }}>
+                    Replace with real photo
+                  </div>
                 </div>
               ))}
             </div>
-          </GsapParallax>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0B0B] via-transparent to-[#0B0B0B] pointer-events-none" />
-        </section>
-
-        {/* Category Filter + Masonry Grid */}
-        <section className="section-padding bg-[#0B0B0B]">
-          <div className="container-custom">
-            <div className="flex justify-center mb-10">
-              <CategoryFilter categories={categories} active={activeCategory} onSelect={setActiveCategory} />
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <GsapReveal animation="fadeUp" staggerSelector=".gallery-tile" stagger={0.06}>
-                  <div className="masonry-grid">
-                    {filtered.map((item, i) => (
-                      <motion.div
-                        key={item.id}
-                        whileHover={{ scale: 1.03 }}
-                        className={`gallery-tile ${item.height} bg-surface rounded-xl border border-border flex items-center justify-center relative group cursor-pointer overflow-hidden`}
-                        onClick={() => setLightboxIndex(galleryItems.indexOf(item))}
-                      >
-                        <span className="text-muted text-sm font-sans">[ {item.label} ]</span>
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                          <MagnifyingGlass size={28} className="text-accent" weight="bold" />
-                        </div>
-                        {/* Category Badge */}
-                        <span className="absolute bottom-3 left-3 bg-accent text-accent-foreground text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                          {item.category}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </GsapReveal>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </section>
-
-        {/* Lightbox */}
-        {lightboxIndex !== null && (
-          <Lightbox
-            images={galleryItems.map((item) => ({ label: item.label, category: item.category }))}
-            currentIndex={lightboxIndex}
-            onClose={() => setLightboxIndex(null)}
-            onNav={setLightboxIndex}
-          />
-        )}
-
-        {/* Before/After Transformations */}
-        <section className="section-padding bg-surface/30 relative overflow-hidden">
-          <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
-          <div className="container-custom relative z-10">
-            <SectionHeader
-              tagName="90-Day Transformations"
-              title="Real Members. Real Transformations."
-              subtitle="No filters, no editing. Just discipline and the right coaching."
-            />
-            <GsapReveal animation="fadeUp" staggerSelector=".transform-item" stagger={0.15}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {transformations.map((t) => (
-                  <div key={t.name} className="transform-item">
-                    <TransformationCard name={t.name} duration={t.duration} program={t.program} />
-                  </div>
-                ))}
-              </div>
-            </GsapReveal>
           </div>
         </section>
 
         {/* CTA Strip */}
-        <section className="py-24 bg-[#0B0B0B] relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-accent/10 rounded-full blur-[100px]" />
-          </div>
-          <div className="container-custom relative z-10 text-center space-y-6">
-            <h3 className="text-2xl md:text-4xl font-display font-extrabold tracking-tight text-balance">
-              Ready to Start Your Transformation?
+        <section className="py-24 md:py-32 bg-[#0B0B0B] relative overflow-hidden border-t border-white/5">
+          <div className="container-custom relative z-10 text-center space-y-8">
+            <h3 className="text-3xl md:text-5xl font-display font-black tracking-tight text-white uppercase max-w-3xl mx-auto leading-tight">
+              Ready To Start Your Own <span className="text-gradient-gold">Legacy?</span>
             </h3>
-            <p className="text-muted font-sans max-w-lg mx-auto">
-              Your before photo starts today. Book a free trial and let us take it from there.
+            <p className="text-white/40 font-sans font-medium max-w-lg mx-auto leading-relaxed">
+              Your transformation isn&apos;t just a photo, it&apos;s a testament to your willpower. Secure your spot in the Gwalior elite.
             </p>
-            <Link href="/contact" className="btn-primary inline-flex text-sm px-10 py-4">
-              Book Free Trial
-            </Link>
+            <div className="flex justify-center pt-4">
+               <Link 
+                href="/contact" 
+                className="btn-primary inline-flex text-sm px-12 py-5 w-full sm:w-auto items-center justify-center gap-3 transition-transform hover:scale-105"
+               >
+                 Book Free Trial <ArrowRight size={20} weight="bold" />
+               </Link>
+            </div>
           </div>
         </section>
       </main>

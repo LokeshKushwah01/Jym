@@ -20,21 +20,27 @@ export function TrainerCard({ name, speciality, experience, bio, initials, insta
       whileHover={{ y: -3 }}
       className="card-base p-8 text-center space-y-5"
     >
-      {/* Circular Photo Placeholder */}
-      <div className="w-20 h-20 rounded-full bg-accent/10 border-2 border-accent/30 mx-auto flex items-center justify-center">
-        <span className="text-accent font-display font-extrabold text-xl">{initials}</span>
+      {/* Circular Photo Placeholder (FIX 5) */}
+      <div style={{
+        width: 80, height: 80, borderRadius: '50%', background: '#1C1C1E',
+        border: '2px solid #D4A853', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        margin: '0 auto', color: '#D4A853', fontSize: 24, fontWeight: 700, fontFamily: 'Poppins, sans-serif'
+      }}>
+        {initials}
       </div>
 
       <div>
-        <h3 className="text-lg font-display font-bold tracking-tight text-foreground">{name}</h3>
-        <p className="text-accent text-xs font-bold uppercase tracking-widest mt-1">{speciality}</p>
+        <h3 className="text-xl font-display font-bold tracking-tight text-white">{name}</h3>
+        <p className="text-accent text-xs font-bold uppercase tracking-[0.2em] mt-2">{speciality}</p>
       </div>
 
-      <Badge variant="outline" className="text-[10px] uppercase tracking-widest font-bold text-muted border-border">
-        {experience}
-      </Badge>
+      <div className="flex justify-center">
+        <Badge variant="outline" className="text-[10px] uppercase tracking-[0.25em] font-bold text-white/40 border-white/10 px-3 py-1">
+          {experience}
+        </Badge>
+      </div>
 
-      <p className="text-muted text-sm font-sans leading-relaxed">{bio}</p>
+      <p className="text-white/40 text-[13px] font-sans leading-relaxed px-2">{bio}</p>
 
       <div className="flex gap-4 justify-center pt-2">
         {instagram && (

@@ -12,8 +12,17 @@ interface TransformationCardProps {
 export function TransformationCard({ name, duration, program }: TransformationCardProps) {
   return (
     <div className="card-base overflow-hidden">
-      <div className="h-[360px]">
-        <BeforeAfterSlider />
+      <div className="h-[360px] relative bg-[#1C1C1E] border-b border-[#2C2C2E] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 flex">
+          <div className="w-1/2 relative border-r border-[#2C2C2E] flex items-center justify-center">
+             <span style={{ color: '#D4A853', fontWeight: 800, fontSize: 13, fontFamily: 'Poppins, sans-serif' }}>[ BEFORE ]</span>
+             <span className="absolute top-4 left-4 text-[10px] font-bold text-white/20 uppercase tracking-widest">Day 1</span>
+          </div>
+          <div className="w-1/2 relative flex items-center justify-center">
+             <span style={{ color: '#D4A853', fontWeight: 800, fontSize: 13, fontFamily: 'Poppins, sans-serif' }}>[ AFTER ]</span>
+             <span className="absolute top-4 left-4 text-[10px] font-bold text-accent uppercase tracking-widest">Day 90</span>
+          </div>
+        </div>
       </div>
       <div className="p-5 flex items-center justify-between">
         <div>

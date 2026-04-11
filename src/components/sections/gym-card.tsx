@@ -12,19 +12,13 @@ interface GymCardProps {
 export function GymCard({ gym }: GymCardProps) {
   return (
     <div className="group bg-surface border border-border rounded-2xl overflow-hidden flex flex-col transition-all hover:border-accent/40 hover:shadow-xl hover:shadow-accent/5">
-      <div className="aspect-[16/10] bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-        {gym.image ? (
-            <Image 
-                src={gym.image} 
-                alt={gym.name} 
-                fill 
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-        ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-muted font-display font-black text-4xl opacity-20 uppercase tracking-tighter">
-                {gym.name}
+      <div className="aspect-[16/10] relative overflow-hidden bg-[#1C1C1E] border-b border-[#2C2C2E]">
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-balance">
+            <div style={{ color: '#D4A853', fontWeight: 800, fontSize: 24, fontFamily: 'Poppins, sans-serif' }}>
+              [ {gym.name} Facility ]
             </div>
-        )}
+            <p className="text-white/20 text-[10px] mt-2 font-bold uppercase tracking-widest">Brand Photography Pending</p>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
         <div className="absolute top-4 left-4">
           <Badge variant="accent" className="uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">

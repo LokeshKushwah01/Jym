@@ -1,144 +1,179 @@
 "use client";
 
-import * as React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { List, X } from "@phosphor-icons/react/dist/ssr";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Programs", href: "/programs" },
-  { name: "Trainers", href: "/trainers" },
-  { name: "Gallery", href: "/gallery" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Contact", href: "/contact" },
-];
 
 export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [scrolled, setScrolled] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  React.useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close drawer on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/programs", label: "Programs" },
+    { href: "/trainers", label: "Trainers" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <header
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-500 border-b",
-        scrolled
-          ? "glass border-border/50 shadow-2xl shadow-black/30"
-          : "bg-transparent border-transparent"
-      )}
+      className="fixed top-0 left-0 w-full z-[100] transition-colors duration-300"
+      style={{
+        background: scrolled ? "rgba(11, 11, 11, 0.95)" : "transparent",
+        backdropFilter: scrolled ? "blur(10px)" : "none",
+        borderBottom: scrolled ? "1px solid var(--border)" : "none",
+        height: 80,
+        display: "flex",
+        alignItems: "center",
+      }}
     >
-      <nav className="container-custom flex h-20 items-center justify-between" aria-label="Global">
+      <nav className="container-custom flex items-center justify-between w-full">
         {/* Logo */}
-        <div className="flex lg:flex-1">
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl font-display font-extrabold tracking-tighter text-gradient-gold transition-transform group-hover:scale-105">
-              JY GYM
-            </span>
-          </Link>
-        </div>
-
-        {/* Mobile buttons */}
-        <div className="flex lg:hidden gap-3 items-center">
-          <ThemeToggle />
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-full p-2 text-foreground hover:bg-surface transition-colors"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open menu</span>
-            <List size={28} weight="bold" />
-          </button>
-        </div>
+        <Link
+          href="/"
+          style={{
+            fontSize: 24,
+            fontWeight: 800,
+            color: "var(--accent)",
+            textDecoration: "none",
+            fontFamily: "Poppins, sans-serif",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          JY GYM
+        </Link>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex lg:gap-x-8">
-          {navigation.map((item) => (
+        <div className="desktop-nav items-center gap-x-8 lg:flex hidden">
+          {links.map((l) => (
             <Link
-              key={item.name}
-              href={item.href}
-              className={cn(
-                "text-xs font-semibold uppercase tracking-[0.12em] transition-all hover:text-accent relative py-2",
-                pathname === item.href
-                  ? "text-accent after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent after:rounded-full"
-                  : "text-white/50 hover:text-white/80"
-              )}
+              key={l.href}
+              href={l.href}
+              style={{
+                fontSize: 14,
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                textDecoration: "none",
+                color: pathname === l.href ? "var(--accent)" : "rgba(255,255,255,0.6)",
+                transition: "color 0.2s",
+              }}
             >
-              {item.name}
+              {l.label}
             </Link>
           ))}
-        </div>
-
-        {/* Desktop right */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4 items-center">
-          <ThemeToggle />
-          <Link href="/pricing" className="btn-primary">
+          <Link
+            href="/pricing"
+            className="btn-primary"
+            style={{
+              padding: "10px 24px",
+              fontSize: 13,
+              borderRadius: 6,
+              background: "var(--accent)",
+              color: "#000",
+              fontWeight: 700,
+              textDecoration: "none",
+            }}
+          >
             Join Now
           </Link>
         </div>
+
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          style={{
+            display: "none",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 8,
+            color: "var(--text)",
+          }}
+          className="hamburger-btn"
+        >
+          {/* 3-line icon */}
+          <div style={{ width: 30, height: 24, position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <span style={{ width: "100%", height: 3, background: "currentColor", borderRadius: 3 }}></span>
+            <span style={{ width: "100%", height: 3, background: "currentColor", borderRadius: 3 }}></span>
+            <span style={{ width: "100%", height: 3, background: "currentColor", borderRadius: 3 }}></span>
+          </div>
+        </button>
       </nav>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
-              onClick={() => setMobileMenuOpen(false)}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm overflow-y-auto bg-[#0B0B0B] px-6 py-6 lg:hidden border-l border-border"
-            >
-              <div className="flex items-center justify-between">
-                <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <span className="text-2xl font-display font-extrabold tracking-tighter text-gradient-gold">JY GYM</span>
-                </Link>
-                <button className="rounded-full p-2 text-foreground hover:bg-surface transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                  <X size={28} weight="bold" />
-                </button>
-              </div>
-              <div className="mt-10 space-y-2">
-                {navigation.map((item, i) => (
-                  <motion.div key={item.name} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "block rounded-xl px-4 py-4 text-2xl font-display font-bold uppercase tracking-tight transition-all active:scale-95",
-                        pathname === item.href ? "text-accent bg-accent/5" : "text-foreground hover:bg-surface"
-                      )}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-              <div className="mt-8 pt-6 border-t border-border">
-                <Link href="/pricing" className="btn-primary w-full text-center text-base py-5" onClick={() => setMobileMenuOpen(false)}>
-                  Join Now
-                </Link>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Mobile drawer */}
+      <div
+        className="mobile-drawer"
+        style={{
+          position: "fixed",
+          top: 80,
+          left: 0,
+          width: "100%",
+          height: "calc(100vh - 80px)",
+          background: "#0B0B0B",
+          padding: "20px 24px",
+          display: open ? "flex" : "none",
+          flexDirection: "column",
+          zIndex: 99,
+          overflowY: "auto",
+        }}
+      >
+        {links.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            onClick={() => setOpen(false)}
+            style={{
+              padding: "12px 0",
+              borderBottom: "1px solid var(--border)",
+              fontFamily: "Montserrat, sans-serif",
+              fontSize: 15,
+              fontWeight: 500,
+              textDecoration: "none",
+              color: pathname === l.href ? "var(--accent)" : "var(--text)",
+            }}
+          >
+            {l.label}
+          </Link>
+        ))}
+        <Link
+          href="/pricing"
+          onClick={() => setOpen(false)}
+          style={{
+            marginTop: 12,
+            background: "var(--accent)",
+            color: "var(--accent-foreground)",
+            padding: "14px",
+            borderRadius: 6,
+            fontWeight: 700,
+            fontSize: 14,
+            textDecoration: "none",
+            fontFamily: "Poppins, sans-serif",
+            textAlign: "center",
+            textTransform: "uppercase",
+            letterSpacing: "0.04em",
+          }}
+        >
+          Join Now
+        </Link>
+      </div>
     </header>
   );
 }
