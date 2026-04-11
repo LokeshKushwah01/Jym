@@ -41,10 +41,12 @@ export const gyms: Gym[] = [
 ];
 
 export const trainers: Trainer[] = [
-  { id: "t1", name: "Vasundhara Rathore", gym: "alpha", speciality: "Strength & Conditioning", cert: "NSCA-CSCS", years: 6, featured: true, image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974&auto=format&fit=crop" },
+  { id: "t1", name: "Vasundhara Rathore", gym: "alpha", speciality: "Fat Loss Specialist", cert: "NSCA-CSCS", years: 6, featured: true, image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974&auto=format&fit=crop" },
   { id: "t2", name: "Ananya Singh", gym: "beta", speciality: "Yoga & Mindfulness", cert: "RYT-500", years: 8, featured: true, image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2120&auto=format&fit=crop" },
-  { id: "t3", name: "Rajesh Kumar", gym: "alpha", speciality: "CrossFit & HIIT", cert: "CF-L2", years: 4, featured: true, image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" },
-  { id: "t4", name: "Vikram Gupta", gym: "beta", speciality: "Nutrition Coaching", cert: "PN Level 2", years: 5, featured: true, image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1970&auto=format&fit=crop" }
+  { id: "t3", name: "Rajesh Kumar", gym: "alpha", speciality: "Strength & HIIT Coach", cert: "CF-L2", years: 4, featured: true, image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" },
+  { id: "t4", name: "Vikram Gupta", gym: "beta", speciality: "Nutrition & Diet", cert: "PN Level 2", years: 5, featured: true, image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1970&auto=format&fit=crop" },
+  { id: "t5", name: "Meera Patel", gym: "alpha", speciality: "CrossFit Coach", cert: "CF-L3", years: 7, featured: true, image: "" },
+  { id: "t6", name: "Arjun Rao", gym: "beta", speciality: "Sports Conditioning", cert: "ACSM-CPT", years: 5, featured: true, image: "" }
 ];
 
 export const schedule: ClassSlot[] = [
@@ -59,9 +61,9 @@ export const schedule: ClassSlot[] = [
 ];
 
 export const testimonials = [
-  { name: "Rahul Sharma", gym: "alpha", plan: "Elite", quote: "Dropped 12kg in 4 months. Olympic lifting zone is world-class.", rating: 5 },
-  { name: "Priya Verma", gym: "beta", plan: "Pro", quote: "The yoga studio completely changed my routine.", rating: 5 },
-  { name: "Amit Joshi", gym: "both", plan: "Elite", quote: "Member at both gyms — worth every rupee.", rating: 5 }
+  { name: "Rahul Sharma", duration: "Member for 1 year", quote: "Dropped 12kg in 4 months. The coaching here is next level — every session felt like it was designed just for me.", rating: 5 },
+  { name: "Priya Verma", duration: "Member for 8 months", quote: "The yoga studio completely changed my routine. I feel stronger, calmer, and more focused than ever before.", rating: 5 },
+  { name: "Amit Joshi", duration: "Member for 2 years", quote: "I've been to five gyms in Gwalior. JY is on a different level — equipment, coaching, environment, everything.", rating: 5 }
 ];
 
 export const timeline = [
@@ -72,14 +74,74 @@ export const timeline = [
 ];
 
 export const faqs = [
-  { q: "Is there a joining fee?", a: "No joining fee on any plan. Pay only the monthly or subscription fees." },
-  { q: "Can I freeze my membership?", a: "Yes, once per year for up to 30 days." },
-  { q: "Do you offer couple plans?", a: "Yes, 15% off when two members join together." },
-  { q: "Is there a free trial?", a: "Yes — one free class at either gym, no commitment." },
-  { q: "Can I use both gyms?", a: "Dual access is available as an add-on for ₹499/month." },
-  { q: "What is the minimum age?", a: "16 years with parental consent, 18+ independently." },
-  { q: "Are personal trainers included?", a: "1 PT session/month on Pro, unlimited on Elite." },
-  { q: "What if I want to cancel?", a: "Cancel anytime — month-to-month, no lock-in." }
+  { q: "Do I need experience to join?", a: "Not at all! Our trainers welcome all fitness levels — from complete beginners to seasoned athletes. We'll build a plan tailored to where you are right now." },
+  { q: "What is included in the free trial?", a: "Your free trial includes a full day of gym access, one group class of your choice, a facility tour, and a consultation with one of our certified trainers." },
+  { q: "Can I switch between programs?", a: "Absolutely. Switch between Weight Loss, Muscle Gain, Strength Training, and Cardio at any time — just speak with your trainer." },
+  { q: "Do you provide a diet plan?", a: "Yes! Standard and Premium members receive a fully customized diet plan from our certified nutrition coaches, updated monthly." },
+  { q: "What are your gym timings?", a: "Our main branch (Alpha) is open 24/7. Our Morar branch (Beta) operates from 5:00 AM to 11:00 PM on weekdays and 7:00 AM to 9:00 PM on weekends." },
+  { q: "How do I cancel my membership?", a: "Cancel anytime with no penalties for monthly plans. Visit the front desk or message us on WhatsApp. Annual plans can be frozen for up to 30 days." },
+  { q: "Is there a joining fee?", a: "No joining fee on any plan. Pay only the monthly or annual subscription." },
+  { q: "Do you offer couple plans?", a: "Yes — 15% off when two members join together on any plan." }
+];
+
+export const programs = [
+  {
+    id: "weight-loss",
+    title: "Weight Loss",
+    tagline: "Burn Fat. Not Your Motivation.",
+    description: "Our science-backed fat loss protocols combine HIIT cardio, resistance training, and personalized nutrition plans to shred body fat while preserving lean muscle mass.",
+    benefits: ["Custom cardio + diet plan", "Weekly check-ins with coach", "Visible results in 4 weeks"],
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop",
+    cta: "Start Weight Loss Program"
+  },
+  {
+    id: "muscle-gain",
+    title: "Muscle Gain",
+    tagline: "Build Muscle. Build Confidence.",
+    description: "Progressive overload training with expert spotting, customized meal plans, and supplement guidance to pack on quality muscle and hit your strength PRs.",
+    benefits: ["Progressive overload programming", "Protein guidance + meal plans", "Monthly strength tracking"],
+    image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop",
+    cta: "Start Muscle Gain Program"
+  },
+  {
+    id: "strength",
+    title: "Strength Training",
+    tagline: "Get Strong. Stay Strong.",
+    description: "Master the fundamentals of powerlifting with certified coaches. Focus on compound movements, technique refinement, and monthly PR targets.",
+    benefits: ["Powerlifting technique coaching", "Compound movement focus", "Monthly PR targets"],
+    image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2070&auto=format&fit=crop",
+    cta: "Start Strength Training"
+  },
+  {
+    id: "cardio",
+    title: "Cardio Fitness",
+    tagline: "Move Better. Live Longer.",
+    description: "A balanced approach to cardiovascular health covering endurance building, heart health monitoring, and high-energy group cardio sessions.",
+    benefits: ["Endurance building protocols", "Heart health monitoring", "Group cardio sessions"],
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop",
+    cta: "Start Cardio Program"
+  }
+];
+
+export const galleryItems = [
+  { id: "gl1", label: "Gym Floor", category: "Gym Tour", height: "h-[280px]" },
+  { id: "gl2", label: "Equipment Room", category: "Equipment", height: "h-[360px]" },
+  { id: "gl3", label: "Weight Rack", category: "Equipment", height: "h-[200px]" },
+  { id: "gl4", label: "Group HIIT Class", category: "Classes", height: "h-[280px]" },
+  { id: "gl5", label: "Transformation — Rahul", category: "Transformations", height: "h-[360px]" },
+  { id: "gl6", label: "Annual Fitness Meet", category: "Events", height: "h-[200px]" },
+  { id: "gl7", label: "Cardio Zone", category: "Gym Tour", height: "h-[280px]" },
+  { id: "gl8", label: "Olympic Lifting Area", category: "Equipment", height: "h-[360px]" },
+  { id: "gl9", label: "Yoga Studio", category: "Classes", height: "h-[200px]" },
+  { id: "gl10", label: "Transformation — Priya", category: "Transformations", height: "h-[280px]" },
+  { id: "gl11", label: "Member Day Event", category: "Events", height: "h-[360px]" },
+  { id: "gl12", label: "Transformation — Amit", category: "Transformations", height: "h-[200px]" },
+];
+
+export const transformations = [
+  { name: "Rahul S.", duration: "90 days", program: "Weight Loss" },
+  { name: "Priya M.", duration: "90 days", program: "Muscle Gain" },
+  { name: "Amit G.", duration: "90 days", program: "Strength Training" },
 ];
 
 export const galleryImages: GalleryImage[] = [
@@ -89,12 +151,4 @@ export const galleryImages: GalleryImage[] = [
   { id: "g4", src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop", alt: "Pro-Grade CrossFit Arena", category: "facilities", gym: "JY Gymnasium 2.0", width: 1200, height: 800, featured: true },
   { id: "g5", src: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2070&auto=format&fit=crop", alt: "Zen Yoga & Meditation Studio", category: "classes", gym: "JY Gymnasium 2.0", width: 1200, height: 800, featured: true },
   { id: "g6", src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop", alt: "Panoramic Cardio Zone", category: "facilities", gym: "JY Gymnasium 2.0", width: 1600, height: 900, featured: true },
-  { id: "g7", src: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop", alt: "Elite Free Weights Section", category: "equipment", gym: "JY Gymnasium", width: 1200, height: 800, featured: false },
-  { id: "g8", src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=2070&auto=format&fit=crop", alt: "Smart Technology Cardio Bay", category: "equipment", gym: "JY Gymnasium 2.0", width: 1200, height: 750, featured: false },
-  { id: "g9", src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop", alt: "High-Intensity Interval Training", category: "classes", gym: "JY Gymnasium", width: 1200, height: 800, featured: false },
-  { id: "g10", src: "https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=2070&auto=format&fit=crop", alt: "Advanced Strength Coaching", category: "classes", gym: "JY Gymnasium 2.0", width: 800, height: 1000, featured: false },
-  { id: "g11", src: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2070&auto=format&fit=crop", alt: "Transformation Milestones", category: "transformations", gym: "both", width: 800, height: 1000, featured: true },
-  { id: "g12", src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop", alt: "Achievement & Progress", category: "transformations", gym: "both", width: 800, height: 1000, featured: false },
-  { id: "g13", src: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=2070&auto=format&fit=crop", alt: "IronEdge Annual Marathon", category: "events", gym: "both", width: 1600, height: 900, featured: false },
-  { id: "g14", src: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1974&auto=format&fit=crop", alt: "Elite Membership Open House", category: "events", gym: "both", width: 1200, height: 800, featured: false },
 ];
