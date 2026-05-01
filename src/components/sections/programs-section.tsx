@@ -1,27 +1,27 @@
 "use client";
 
-import { Barbell, HeartHalf, PersonSimpleRun } from "@phosphor-icons/react/dist/ssr";
+import { BarbellIcon, HeartHalfIcon, PersonSimpleRunIcon } from "@phosphor-icons/react/dist/ssr";
 
 const programs = [
   {
     title: "Weight Loss",
     tagline: "Burn fat, not muscle",
     description: "Our science-backed fat loss protocols combine HIIT cardio, resistance training, and personalized nutrition plans to shred body fat while preserving lean muscle mass.",
-    icon: HeartHalf,
+    icon: HeartHalfIcon,
     image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "Muscle Gain",
     tagline: "Build size and strength",
     description: "Progressive overload training with expert spotting, customized meal plans, and supplement guidance to pack on quality muscle and hit your strength PRs.",
-    icon: Barbell,
+    icon: BarbellIcon,
     image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "General Fitness",
     tagline: "Move better, feel stronger",
     description: "A balanced approach to health covering mobility, functional strength, cardio conditioning, and flexibility — perfect for those starting their fitness journey.",
-    icon: PersonSimpleRun,
+    icon: PersonSimpleRunIcon,
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop",
   },
 ];

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Navbar } from "../../components/layout/navbar";
 import { Footer } from "../../components/layout/footer";
 import { TrainerCard } from "../../components/ui/trainer-card";
@@ -18,7 +17,7 @@ export default function TrainersPage() {
       <main className="flex-1 pt-20">
         {/* Hero */}
         <section className="py-24 md:py-32 bg-[#0B0B0B] text-center relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/8 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
           <div className="container-custom relative z-10 space-y-6">
             <Badge variant="accent" className="uppercase tracking-[0.2em] font-bold px-5 py-1.5">Our Team</Badge>
             <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tighter text-balance">
@@ -42,7 +41,8 @@ export default function TrainersPage() {
                       speciality={t.speciality}
                       experience={`${t.cert} • ${t.years}Y Exp`}
                       bio={`Dedicated ${t.speciality.toLowerCase()} coach helping members push past their limits every day.`}
-                      initials={t.name.split(" ").map(n => n[0]).join("")}
+                      initials={t.name.split(" ").map((n: string) => n[0]).join("")}
+                      image={t.image || undefined}
                       instagram="https://instagram.com"
                       whatsapp="918982280027"
                     />

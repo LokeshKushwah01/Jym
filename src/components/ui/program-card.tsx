@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProgramCardProps {
   title: string;
@@ -17,10 +18,12 @@ export function ProgramCard({ title, tagline, image, href }: ProgramCardProps) {
       whileTap={{ scale: 0.97 }}
       className="group relative min-w-[300px] h-[380px] rounded-xl overflow-hidden cursor-pointer flex-shrink-0"
     >
-      {/* Background Image Placeholder */}
-      <div
-        className="absolute inset-0 bg-surface bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-        style={{ backgroundImage: `url('${image}')` }}
+      <Image
+        src={image}
+        alt={title}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-110"
+        sizes="(max-width: 768px) 100vw, 300px"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 

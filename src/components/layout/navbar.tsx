@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { List, X } from "@phosphor-icons/react/dist/ssr";
+import { ListIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -57,7 +57,7 @@ export function Navbar() {
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open menu</span>
-            <List size={28} weight="bold" />
+            <ListIcon size={28} weight="bold" />
           </button>
         </div>
 
@@ -111,7 +111,7 @@ export function Navbar() {
                   <span className="text-2xl font-display font-extrabold tracking-tighter text-gradient-gold">JY GYM</span>
                 </Link>
                 <button className="rounded-full p-2 text-foreground hover:bg-surface transition-colors" onClick={() => setMobileMenuOpen(false)}>
-                  <X size={28} weight="bold" />
+                  <XIcon size={28} weight="bold" />
                 </button>
               </div>
               <div className="mt-10 space-y-2">

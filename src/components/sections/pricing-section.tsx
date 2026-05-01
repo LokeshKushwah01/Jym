@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Gym, Plan } from "@/types/gym";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "@phosphor-icons/react/dist/ssr";
+import { CheckIcon } from "@phosphor-icons/react/dist/ssr";
 import { cn, formatCurrency } from "@/lib/utils";
 
 type BillingCycle = "monthly" | "yearly";
@@ -63,7 +63,7 @@ function PricingCard({ plan, billingCycle }: PricingCardProps) {
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-start gap-3.5 text-sm">
             <div className="mt-0.5 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0 border border-accent/20">
-                <Check size={12} weight="bold" className="text-accent" />
+                <CheckIcon size={12} weight="bold" className="text-accent" />
             </div>
             <span className="text-foreground/70 leading-relaxed font-medium">{feature}</span>
           </li>

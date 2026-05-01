@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { InstagramLogo, FacebookLogo, WhatsappLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
+import { InstagramLogoIcon, FacebookLogoIcon, WhatsappLogoIcon, YoutubeLogoIcon } from "@phosphor-icons/react/dist/ssr";
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -12,10 +12,10 @@ const quickLinks = [
 ];
 
 const socials = [
-  { icon: InstagramLogo, href: "https://instagram.com", label: "Instagram" },
-  { icon: FacebookLogo, href: "https://facebook.com", label: "Facebook" },
-  { icon: YoutubeLogo, href: "https://youtube.com", label: "YouTube" },
-  { icon: WhatsappLogo, href: "https://wa.me/918982280027", label: "WhatsApp" },
+  { icon: InstagramLogoIcon, href: "https://instagram.com", label: "Instagram" },
+  { icon: FacebookLogoIcon, href: "https://facebook.com", label: "Facebook" },
+  { icon: YoutubeLogoIcon, href: "https://youtube.com", label: "YouTube" },
+  { icon: WhatsappLogoIcon, href: "https://wa.me/918982280027", label: "WhatsApp" },
 ];
 
 export function Footer() {
@@ -42,7 +42,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-5">
-            <h4 className="text-xs font-display font-bold uppercase tracking-[0.3em] text-white/20">Quick Links</h4>
+            <h4 className="text-xs font-display font-bold uppercase tracking-[0.3em] text-white/50">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -56,7 +56,7 @@ export function Footer() {
 
           {/* Contact + Social */}
           <div className="space-y-5">
-            <h4 className="text-xs font-display font-bold uppercase tracking-[0.3em] text-white/20">Connect</h4>
+            <h4 className="text-xs font-display font-bold uppercase tracking-[0.3em] text-white/50">Connect</h4>
             <div className="space-y-3 text-sm text-white/50 font-sans">
               <p>Sagartal Rd, Bahodapur, Gwalior</p>
               <p><a href="tel:+918982280027" className="hover:text-accent transition-colors">089822 80027</a></p>

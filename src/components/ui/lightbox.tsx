@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CaretLeft, CaretRight } from "@phosphor-icons/react/dist/ssr";
+import { XIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 
 interface LightboxProps {
   images: { label: string; category: string }[];
@@ -57,7 +57,7 @@ export function Lightbox({ images, currentIndex, onClose, onNav }: LightboxProps
       >
         {/* Close Button */}
         <button className="absolute top-6 right-6 z-10 text-white hover:text-accent transition-colors" onClick={onClose}>
-          <X size={40} weight="bold" />
+          <XIcon size={40} weight="bold" />
         </button>
 
         {/* Left Arrow */}
@@ -65,7 +65,7 @@ export function Lightbox({ images, currentIndex, onClose, onNav }: LightboxProps
           className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 text-accent hover:text-white transition-colors p-2"
           onClick={(e) => { e.stopPropagation(); goPrev(); }}
         >
-          <CaretLeft size={48} weight="bold" />
+          <CaretLeftIcon size={48} weight="bold" />
         </button>
 
         {/* Image Area */}
@@ -99,7 +99,7 @@ export function Lightbox({ images, currentIndex, onClose, onNav }: LightboxProps
           className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 text-accent hover:text-white transition-colors p-2"
           onClick={(e) => { e.stopPropagation(); goNext(); }}
         >
-          <CaretRight size={48} weight="bold" />
+          <CaretRightIcon size={48} weight="bold" />
         </button>
       </motion.div>
     </AnimatePresence>

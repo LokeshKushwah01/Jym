@@ -9,7 +9,11 @@ import { CTABanner } from "../../components/ui/cta-banner";
 import { WhatsAppButton } from "../../components/ui/whatsapp-button";
 import { GsapReveal } from "../../components/ui/gsap-reveal";
 import { Badge } from "../../components/ui/badge";
-import { timeline } from "../../lib/data";
+import { timeline, gyms } from "../../lib/data";
+
+const GYM_ALPHA = gyms[0].image ?? "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop";
+const GYM_BETA  = gyms[1].image ?? "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop";
+const HERO_IMG  = "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop";
 
 export default function AboutPage() {
   return (
@@ -19,7 +23,7 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="relative py-24 md:py-32 overflow-hidden">
           <div className="absolute inset-0">
-            <Image src="/images/gym_alpha.png" alt="About" fill className="object-cover opacity-15" />
+            <Image src={GYM_ALPHA} alt="About" fill className="object-cover opacity-15" sizes="100vw" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0B0B0B] via-[#0B0B0B]/70 to-[#0B0B0B]" />
           </div>
           <div className="container-custom relative z-10 text-center space-y-6">
@@ -37,7 +41,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <GsapReveal animation="fadeLeft">
                 <div className="aspect-video relative rounded-xl overflow-hidden border border-border">
-                  <Image src="/images/gym_alpha.png" alt="Our gym" fill className="object-cover" />
+                  <Image src={GYM_ALPHA} alt="Our gym" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                 </div>
               </GsapReveal>
               <GsapReveal animation="fadeRight">
@@ -59,7 +63,7 @@ export default function AboutPage() {
 
         {/* Mission Quote */}
         <section className="py-24 bg-surface/30 relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] bg-accent/8 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/4 w-[300px] h-[300px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="container-custom relative z-10">
             <GsapReveal animation="fadeUp">
               <div className="max-w-3xl mx-auto border-l-4 border-accent pl-8 py-4">
@@ -123,12 +127,12 @@ export default function AboutPage() {
             <GsapReveal animation="fadeUp" staggerSelector=".env-photo" stagger={0.12}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
-                  { label: "Training Floor", img: "/images/gym_alpha.png" },
-                  { label: "Recovery Zone", img: "/images/hero_bg.png" },
-                  { label: "CrossFit Arena", img: "/images/gym_beta.png" },
+                  { label: "Training Floor", img: GYM_ALPHA },
+                  { label: "Recovery Zone", img: HERO_IMG },
+                  { label: "CrossFit Arena", img: GYM_BETA },
                 ].map((p) => (
                   <div key={p.label} className="env-photo aspect-video relative rounded-xl overflow-hidden group border border-border">
-                    <Image src={p.img} alt={p.label} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <Image src={p.img} alt={p.label} fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     <span className="absolute bottom-4 left-4 text-white font-display font-bold text-sm uppercase tracking-wider">{p.label}</span>
                   </div>

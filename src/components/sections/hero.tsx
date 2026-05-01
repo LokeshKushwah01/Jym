@@ -55,36 +55,25 @@ export function Hero() {
       {/* Video / Image Background with Parallax */}
       <div className="absolute inset-0 z-0">
         <div ref={videoRef} className="absolute inset-0 scale-100 will-change-transform">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            poster="/images/hero_bg.png"
-          >
-            {/* Replace src with your gym video file */}
-            <source src="" type="video/mp4" />
-          </video>
-          {/* Fallback to local real image */}
           <Image
             src="/images/hero_bg.png"
             alt="JY Gymnasium"
             fill
             className="object-cover"
             priority
+            sizes="100vw"
           />
         </div>
         {/* Cinematic Overlay */}
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(11,11,11,0.65), rgba(11,11,11,0.9))" }} />
       </div>
 
-      {/* Floating Badge
+      {/* Floating Badge */}
       <div className="hero-badge absolute top-28 right-6 md:top-28 md:right-12 z-20">
-        <div className="bg-accent text-accent-foreground text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full">
-          🔥 First Day FREE
+        <div className="bg-accent text-accent-foreground text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full flex items-center gap-2 shadow-lg shadow-accent/30">
+          ✦ First Day FREE
         </div>
-      </div> */}
+      </div>
 
       {/* Content */}
       <div className="container-custom relative z-10 text-center">
@@ -101,7 +90,7 @@ export function Hero() {
             <Link href="/pricing" className="btn-primary px-12 py-5 text-sm">
               Join Now
             </Link>
-            <Link href="/contact" className="btn-secondary px-12 py-5 text-sm text-white border-white/20 hover:bg-white/5">
+            <Link href="/contact" className="btn-secondary px-12 py-5 text-sm">
               Book Free Trial
             </Link>
           </div>

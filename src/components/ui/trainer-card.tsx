@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { InstagramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import { InstagramLogoIcon, WhatsappLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import { Badge } from "@/components/ui/badge";
 
 interface TrainerCardProps {
@@ -10,19 +11,26 @@ interface TrainerCardProps {
   experience: string;
   bio: string;
   initials: string;
+  image?: string;
   instagram?: string;
   whatsapp?: string;
 }
 
-export function TrainerCard({ name, speciality, experience, bio, initials, instagram, whatsapp }: TrainerCardProps) {
+export function TrainerCard({ name, speciality, experience, bio, initials, image, instagram, whatsapp }: TrainerCardProps) {
   return (
     <motion.div
       whileHover={{ y: -3 }}
       className="card-base p-8 text-center space-y-5"
     >
-      {/* Circular Photo Placeholder */}
-      <div className="w-20 h-20 rounded-full bg-accent/10 border-2 border-accent/30 mx-auto flex items-center justify-center">
-        <span className="text-accent font-display font-extrabold text-xl">{initials}</span>
+      {/* Photo or Initials */}
+      <div className="w-24 h-24 rounded-full mx-auto overflow-hidden border-2 border-accent/30 relative">
+        {image ? (
+          <Image src={image} alt={name} fill className="object-cover" sizes="96px" />
+        ) : (
+          <div className="w-full h-full bg-accent/10 flex items-center justify-center">
+            <span className="text-accent font-display font-extrabold text-2xl">{initials}</span>
+          </div>
+        )}
       </div>
 
       <div>
@@ -39,12 +47,12 @@ export function TrainerCard({ name, speciality, experience, bio, initials, insta
       <div className="flex gap-4 justify-center pt-2">
         {instagram && (
           <a href={instagram} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-accent transition-colors">
-            <InstagramLogo size={20} />
+            <InstagramLogoIcon size={20} />
           </a>
         )}
         {whatsapp && (
           <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-accent transition-colors">
-            <WhatsappLogo size={20} />
+            <WhatsappLogoIcon size={20} />
           </a>
         )}
       </div>

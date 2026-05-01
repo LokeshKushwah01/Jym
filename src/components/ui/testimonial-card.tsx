@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star } from "@phosphor-icons/react/dist/ssr";
 
 interface TestimonialCardProps {
   quote: string;
@@ -17,9 +16,9 @@ export function TestimonialCard({ quote, name, duration, rating = 5 }: Testimoni
       whileTap={{ scale: 0.97 }}
       className="card-glass p-8 space-y-5 cursor-pointer"
     >
-      <div className="flex gap-1">
+      <div className="flex gap-0.5">
         {[...Array(rating)].map((_, i) => (
-          <Star key={i} size={16} weight="fill" className="text-accent" />
+          <span key={i} className="text-accent text-sm leading-none">★</span>
         ))}
       </div>
       <p className="text-foreground/80 italic text-sm leading-relaxed font-sans">
@@ -27,7 +26,7 @@ export function TestimonialCard({ quote, name, duration, rating = 5 }: Testimoni
       </p>
       <div className="flex items-center gap-3">
         <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center border border-accent/20">
-          <span className="text-accent font-bold text-xs">{name[0]}</span>
+          <span className="text-accent font-bold text-xs">{name.split(" ").map((n: string) => n[0]).join("")}</span>
         </div>
         <div>
           <p className="text-sm font-display font-bold text-foreground">{name}</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check } from "@phosphor-icons/react/dist/ssr";
+import { CheckIcon } from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -47,7 +47,7 @@ export function PricingCard({ name, price, period, features, popular, ctaText = 
         {features.map((f) => (
           <li key={f} className="flex items-start gap-3 text-sm font-sans">
             <div className="mt-0.5 w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center shrink-0">
-              <Check size={12} weight="bold" className="text-accent" />
+              <CheckIcon size={12} weight="bold" className="text-accent" />
             </div>
             <span className="text-foreground/65">{f}</span>
           </li>

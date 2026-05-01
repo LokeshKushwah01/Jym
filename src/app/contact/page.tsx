@@ -7,7 +7,7 @@ import { WhatsAppButton } from "../../components/ui/whatsapp-button";
 import { GsapReveal } from "../../components/ui/gsap-reveal";
 import { Badge } from "../../components/ui/badge";
 import { gyms } from "../../lib/data";
-import { Envelope, Phone, WhatsappLogo, MapPin, InstagramLogo, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { EnvelopeIcon, PhoneIcon, WhatsappLogoIcon, MapPinIcon, InstagramLogoIcon, ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,7 +19,7 @@ export default function ContactPage() {
       <main className="flex-1 pt-20">
         {/* Hero */}
         <section className="py-24 md:py-32 bg-[#0B0B0B] text-center relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-accent/8 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
           <div className="container-custom relative z-10 space-y-6">
             <Badge variant="accent" className="uppercase tracking-[0.2em] font-bold px-5 py-1.5">Contact</Badge>
             <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tighter text-balance">
@@ -42,15 +42,15 @@ export default function ContactPage() {
                     <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
                       <div className="space-y-1">
                         <label className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted font-sans">Full Name</label>
-                        <input type="text" required placeholder="Your name" className="w-full h-12 bg-[#0B0B0B] border border-border px-4 text-foreground rounded-md focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 text-sm font-sans transition-all" />
+                        <input type="text" required placeholder="Your name" className="w-full h-12 bg-[#0B0B0B] border border-white/15 px-4 text-foreground rounded-md focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 text-sm font-sans transition-all" />
                       </div>
                       <div className="space-y-1">
                         <label className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted font-sans">Phone Number</label>
-                        <input type="tel" required placeholder="+91 XXXXXXXXXX" className="w-full h-12 bg-[#0B0B0B] border border-border px-4 text-foreground rounded-md focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 text-sm font-sans transition-all" />
+                        <input type="tel" required placeholder="+91 XXXXXXXXXX" className="w-full h-12 bg-[#0B0B0B] border border-white/15 px-4 text-foreground rounded-md focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 text-sm font-sans transition-all" />
                       </div>
                       <div className="space-y-1">
                         <label className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted font-sans">Your Goal</label>
-                        <select className="w-full h-12 bg-[#0B0B0B] border border-border px-4 text-foreground rounded-md focus:outline-none focus:border-accent text-sm font-sans appearance-none transition-all">
+                        <select className="w-full h-12 bg-[#0B0B0B] border border-white/15 px-4 text-foreground rounded-md focus:outline-none focus:border-accent text-sm font-sans appearance-none transition-all">
                           <option>Weight Loss</option>
                           <option>Muscle Gain</option>
                           <option>Strength Training</option>
@@ -60,16 +60,16 @@ export default function ContactPage() {
                       </div>
                       <div className="space-y-1">
                         <label className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted font-sans">Message</label>
-                        <textarea rows={4} placeholder="How can we help you?" className="w-full bg-[#0B0B0B] border border-border p-4 text-foreground rounded-md focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 text-sm font-sans resize-none transition-all" />
+                        <textarea rows={4} placeholder="How can we help you?" className="w-full bg-[#0B0B0B] border border-white/15 p-4 text-foreground rounded-md focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 text-sm font-sans resize-none transition-all" />
                       </div>
                       <button type="submit" className="btn-primary w-full py-4 text-sm flex items-center justify-center gap-2">
-                        Send Message <ArrowRight size={16} weight="bold" />
+                        Send Message <ArrowRightIcon size={16} weight="bold" />
                       </button>
                     </form>
                   ) : (
                     <div className="text-center py-16 space-y-4">
                       <div className="w-16 h-16 rounded-full bg-accent/15 mx-auto flex items-center justify-center">
-                        <WhatsappLogo size={32} className="text-accent" />
+                        <WhatsappLogoIcon size={32} className="text-accent" />
                       </div>
                       <h3 className="text-xl font-display font-bold">Message Received!</h3>
                       <p className="text-muted font-sans text-sm">We&apos;ll WhatsApp you within 1 hour!</p>
@@ -83,10 +83,10 @@ export default function ContactPage() {
                 <div className="space-y-8">
                   <div className="space-y-6">
                     {[
-                      { icon: MapPin, label: "Address", value: `${gym.address}, ${gym.city}` },
-                      { icon: Phone, label: "Phone", value: gym.phone, href: `tel:+91${gym.whatsapp}` },
-                      { icon: Envelope, label: "Email", value: gym.email, href: `mailto:${gym.email}` },
-                      { icon: InstagramLogo, label: "Instagram", value: "@jygymnasium", href: "https://instagram.com" },
+                      { icon: MapPinIcon, label: "Address", value: `${gym.address}, ${gym.city}` },
+                      { icon: PhoneIcon, label: "Phone", value: gym.phone, href: `tel:+91${gym.whatsapp}` },
+                      { icon: EnvelopeIcon, label: "Email", value: gym.email, href: `mailto:${gym.email}` },
+                      { icon: InstagramLogoIcon, label: "Instagram", value: "@jygymnasium", href: "https://instagram.com" },
                     ].map((item) => (
                       <div key={item.label} className="flex items-start gap-4">
                         <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     className="flex items-center gap-4 p-5 card-glass group"
                   >
                     <div className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center shrink-0">
-                      <WhatsappLogo size={24} weight="fill" className="text-white" />
+                      <WhatsappLogoIcon size={24} weight="fill" className="text-white" />
                     </div>
                     <div>
                       <p className="text-sm font-display font-bold group-hover:text-accent transition-colors">Chat with us on WhatsApp</p>

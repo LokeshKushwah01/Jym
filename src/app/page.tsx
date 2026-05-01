@@ -13,8 +13,8 @@ import { TestimonialCard } from "../components/ui/testimonial-card";
 import { CTABanner } from "../components/ui/cta-banner";
 import { WhatsAppButton } from "../components/ui/whatsapp-button";
 import { GsapReveal } from "../components/ui/gsap-reveal";
-import { testimonials, programs, galleryItems, gyms, transformations } from "../lib/data";
-import { Certificate, Clock, Users, TrendUp, MagnifyingGlass, MapPin, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { testimonials, programs, galleryImages, gyms, transformations } from "../lib/data";
+import { CertificateIcon, ClockIcon, UsersIcon, TrendUpIcon, MagnifyingGlassIcon, MapPinIcon, ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
 
 export default function Home() {
   return (
@@ -25,15 +25,17 @@ export default function Home() {
         <Hero />
 
         {/* ═══════ OFFER STRIP ═══════ */}
-        {/* <div className="bg-gradient-to-r from-[#D4AF37] to-[#F5E6A8] text-black overflow-hidden">
+        <div className="bg-gradient-to-r from-[#D4AF37] to-[#F5E6A8] text-black overflow-hidden">
           <div className="py-3 flex">
-            <div className="animate-marquee flex gap-16 whitespace-nowrap text-sm font-bold uppercase tracking-wider">
-              {[...Array(4)].map((_, i) => (
-                <span key={i}>🔥 Limited Offer: First Month 30% OFF — Walk in today, no commitment needed &nbsp;&nbsp; ✦ &nbsp;&nbsp;</span>
+            <div className="animate-marquee flex gap-16 whitespace-nowrap text-sm font-bold uppercase tracking-wider shrink-0">
+              {[...Array(8)].map((_, i) => (
+                <span key={i} className="flex items-center gap-3">
+                  ✦ Limited Offer: First Month 30% OFF — Walk in today, no commitment needed
+                </span>
               ))}
             </div>
           </div>
-        </div> */}
+        </div>
 
         {/* ═══════ WHY CHOOSE US ═══════ */}
         <section className="section-padding bg-[#0B0B0B]">
@@ -42,10 +44,10 @@ export default function Home() {
             <GsapReveal animation="fadeUp" staggerSelector=".why-card" stagger={0.12}>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { icon: Certificate, title: "Expert Certified Trainers", desc: "Internationally certified coaches obsessed with your progress and results." },
-                  { icon: TrendUp, title: "Personalised 90-Day Plans", desc: "Custom blueprints engineered for your exact body, goals, and timeline." },
-                  { icon: Clock, title: "24/7 Access + Community", desc: "Train on your schedule. Our main facility never closes — ever." },
-                  { icon: Users, title: "Proven Transformations", desc: "500+ members transformed with discipline, data, and expert guidance." },
+                  { icon: CertificateIcon, title: "Expert Certified Trainers", desc: "Internationally certified coaches obsessed with your progress and results." },
+                  { icon: TrendUpIcon, title: "Personalised 90-Day Plans", desc: "Custom blueprints engineered for your exact body, goals, and timeline." },
+                  { icon: ClockIcon, title: "24/7 Access + Community", desc: "Train on your schedule. Our main facility never closes — ever." },
+                  { icon: UsersIcon, title: "Proven Transformations", desc: "500+ members transformed with discipline, data, and expert guidance." },
                 ].map((f) => (
                   <motion.div
                     key={f.title}
@@ -79,7 +81,6 @@ export default function Home() {
 
         {/* ═══════ TRANSFORMATION PREVIEW ═══════ */}
         <section className="section-padding bg-[#0B0B0B] relative overflow-hidden">
-          {/* Subtle gold glow background */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
           <div className="container-custom relative z-10">
             <SectionHeader
@@ -91,36 +92,24 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {transformations.map((t) => (
                   <div key={t.name} className="transform-card card-glass overflow-hidden group">
-                    <div className="h-[280px] relative">
-                      <div className="absolute inset-0 flex">
-                        {/* Before */}
-                        <div className="w-1/2 bg-zinc-800 flex items-center justify-center relative">
-                          <div className="text-center z-10">
-                            <div className="w-14 h-14 mx-auto rounded-full bg-zinc-700 flex items-center justify-center border border-zinc-600">
-                              <span className="text-white/30 text-xl font-bold">{t.name[0]}</span>
-                            </div>
-                          </div>
-                          <span className="label-before">Before</span>
-                        </div>
-                        {/* After */}
-                        <div className="w-1/2 bg-zinc-700 flex items-center justify-center relative">
-                          <div className="text-center z-10">
-                            <div className="w-14 h-14 mx-auto rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center">
-                              <span className="text-accent text-xl font-bold">{t.name[0]}</span>
-                            </div>
-                          </div>
-                          <span className="label-after">After 90 Days</span>
-                        </div>
+                    <div className="h-[300px] relative overflow-hidden">
+                      <Image
+                        src={t.image}
+                        alt={`${t.name} transformation`}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                      <div className="absolute top-3 right-3">
+                        <span className="label-after">90 Days</span>
                       </div>
-                    </div>
-                    <div className="p-5 flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-display font-bold text-foreground">{t.name}</p>
-                        <p className="text-xs text-muted font-sans">{t.duration}</p>
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <p className="text-base font-display font-bold text-white">{t.name}</p>
+                        <span className="bg-accent/20 text-accent text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mt-2 inline-block">
+                          {t.program}
+                        </span>
                       </div>
-                      <span className="bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
-                        {t.program}
-                      </span>
                     </div>
                   </div>
                 ))}
@@ -128,7 +117,7 @@ export default function Home() {
             </GsapReveal>
             <div className="text-center mt-10">
               <Link href="/gallery" className="btn-secondary inline-flex items-center gap-2 px-8 py-3 text-sm">
-                View Full Gallery <ArrowRight size={16} weight="bold" />
+                View Full Gallery <ArrowRightIcon size={16} weight="bold" />
               </Link>
             </div>
           </div>
@@ -167,30 +156,29 @@ export default function Home() {
                     whileHover={{ y: -6 }}
                     className="gym-location-card card-glass overflow-hidden group cursor-pointer"
                   >
-                    {/* Image */}
                     <div className="relative h-[240px] overflow-hidden">
                       <Image
-                        src={gym.id === "alpha" ? "/images/gym_alpha.png" : "/images/gym_beta.png"}
+                        src={gym.image ?? "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"}
                         alt={gym.name}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent" />
                       <div className="absolute bottom-4 left-5 z-10">
                         <h3 className="text-xl font-display font-extrabold text-white tracking-tight">{gym.name}</h3>
                       </div>
                     </div>
-                    {/* Info */}
                     <div className="p-6 space-y-4">
                       <div className="flex items-start gap-3">
-                        <MapPin size={18} className="text-accent mt-0.5 shrink-0" />
+                        <MapPinIcon size={18} className="text-accent mt-0.5 shrink-0" />
                         <div>
                           <p className="text-sm text-foreground font-sans">{gym.address}</p>
                           <p className="text-xs text-muted font-sans">{gym.city}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Clock size={18} className="text-accent shrink-0" />
+                        <ClockIcon size={18} className="text-accent shrink-0" />
                         <p className="text-sm text-foreground font-sans">{gym.hours.weekday}</p>
                       </div>
                       <div className="flex flex-wrap gap-2 pt-2">
@@ -217,15 +205,21 @@ export default function Home() {
             <SectionHeader tagName="Inside Our Gym" title="Real Sweat. Real Results." />
             <GsapReveal animation="fadeUp" staggerSelector=".gallery-thumb" stagger={0.08}>
               <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                {galleryItems.slice(0, 6).map((item) => (
+                {galleryImages.map((item) => (
                   <motion.div
                     key={item.id}
                     whileHover={{ scale: 1.05 }}
-                    className="gallery-thumb flex-shrink-0 w-[200px] h-[200px] bg-surface rounded-xl border border-border flex items-center justify-center relative group cursor-pointer overflow-hidden"
+                    className="gallery-thumb flex-shrink-0 w-[220px] h-[220px] rounded-xl border border-border relative group cursor-pointer overflow-hidden"
                   >
-                    <span className="text-muted text-xs font-sans">[ {item.label} ]</span>
-                    <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <MagnifyingGlass size={24} className="text-accent" weight="bold" />
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      className="object-cover"
+                      sizes="220px"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <MagnifyingGlassIcon size={24} className="text-accent" weight="bold" />
                     </div>
                   </motion.div>
                 ))}
@@ -233,7 +227,7 @@ export default function Home() {
             </GsapReveal>
             <div className="text-center mt-8">
               <Link href="/gallery" className="text-accent text-sm font-bold font-sans uppercase tracking-wider hover:text-accent/80 transition-colors inline-flex items-center gap-2">
-                View Full Gallery <ArrowRight size={14} weight="bold" />
+                View Full Gallery <ArrowRightIcon size={14} weight="bold" />
               </Link>
             </div>
           </div>

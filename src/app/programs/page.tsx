@@ -9,7 +9,7 @@ import { Badge } from "../../components/ui/badge";
 import { CTABanner } from "../../components/ui/cta-banner";
 import { WhatsAppButton } from "../../components/ui/whatsapp-button";
 import { GsapReveal } from "../../components/ui/gsap-reveal";
-import { Check } from "@phosphor-icons/react/dist/ssr";
+import { CheckIcon } from "@phosphor-icons/react/dist/ssr";
 import { programs } from "../../lib/data";
 
 export default function ProgramsPage() {
@@ -19,7 +19,7 @@ export default function ProgramsPage() {
       <main className="flex-1 pt-20">
         {/* Hero */}
         <section className="py-24 md:py-32 bg-[#0B0B0B] text-center relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/8 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
           <div className="container-custom relative z-10 space-y-6">
             <Badge variant="accent" className="uppercase tracking-[0.2em] font-bold px-5 py-1.5">Programs</Badge>
             <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tighter text-balance">
@@ -39,7 +39,7 @@ export default function ProgramsPage() {
                 {/* Image */}
                 <GsapReveal animation={i % 2 === 0 ? "fadeLeft" : "fadeRight"}>
                   <div className="aspect-[4/3] relative rounded-xl overflow-hidden border border-border group">
-                    <Image src={program.image} alt={program.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={program.image} alt={program.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   </div>
                 </GsapReveal>
@@ -56,7 +56,7 @@ export default function ProgramsPage() {
                       {program.benefits.map((b) => (
                         <li key={b} className="flex items-center gap-3 text-sm font-sans">
                           <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center shrink-0">
-                            <Check size={12} weight="bold" className="text-accent" />
+                            <CheckIcon size={12} weight="bold" className="text-accent" />
                           </div>
                           <span className="text-foreground/70 font-medium">{b}</span>
                         </li>

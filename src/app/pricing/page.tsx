@@ -50,7 +50,7 @@ export default function PricingPage() {
         {/* Offer Strip */}
         <div className="bg-gradient-to-r from-[#D4AF37] to-[#F5E6A8] py-4 text-center">
           <p className="text-black text-sm font-bold font-sans uppercase tracking-wider">
-            🔥 First Day FREE — No card required. Just walk in.
+            ✦ First Day FREE — No card required. Just walk in.
           </p>
         </div>
 

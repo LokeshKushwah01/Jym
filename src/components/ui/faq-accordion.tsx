@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CaretDown } from "@phosphor-icons/react/dist/ssr";
+import { CaretDownIcon } from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/lib/utils";
 
 interface FAQItemProps {
@@ -19,10 +19,10 @@ function FAQItem({ question, answer }: FAQItemProps) {
         className="flex w-full items-center justify-between py-6 text-left"
       >
         <span className="text-lg font-black uppercase tracking-tight text-foreground">{question}</span>
-        <CaretDown 
-          size={20} 
-          weight="bold" 
-          className={cn("text-accent transition-transform duration-300", isOpen && "rotate-180")} 
+        <CaretDownIcon
+          size={20}
+          weight="bold"
+          className={cn("text-accent transition-transform duration-300", isOpen && "rotate-180")}
         />
       </button>
       <div className={cn(

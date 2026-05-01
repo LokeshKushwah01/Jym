@@ -7,16 +7,21 @@ import Link from "next/link";
 import { Navbar } from "../../components/layout/navbar";
 import { Footer } from "../../components/layout/footer";
 import { CategoryFilter } from "../../components/ui/category-filter";
-import { Lightbox } from "../../components/ui/lightbox";
-import { TransformationCard } from "../../components/ui/transformation-card";
 import { SectionHeader } from "../../components/ui/section-header";
 import { WhatsAppButton } from "../../components/ui/whatsapp-button";
-import { GsapReveal, GsapParallax } from "../../components/ui/gsap-reveal";
+import { GsapReveal } from "../../components/ui/gsap-reveal";
 import { Badge } from "../../components/ui/badge";
-import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
+import { MagnifyingGlassIcon, XIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { galleryItems, transformations } from "../../lib/data";
 
 const categories = ["All", "Transformations", "Equipment", "Classes", "Events", "Gym Tour"];
+
+const parallaxImages = [
+  "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop",
+];
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -26,6 +31,17 @@ export default function GalleryPage() {
     if (activeCategory === "All") return galleryItems;
     return galleryItems.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
+
+  const lightboxItems = lightboxIndex !== null ? filtered : [];
+
+  const goPrev = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex(lightboxIndex > 0 ? lightboxIndex - 1 : filtered.length - 1);
+  };
+  const goNext = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex(lightboxIndex < filtered.length - 1 ? lightboxIndex + 1 : 0);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -49,16 +65,14 @@ export default function GalleryPage() {
         </section>
 
         {/* Parallax Gallery Strip */}
-        <section className="relative h-[400px] overflow-hidden">
-          <GsapParallax speed={0.3} className="absolute inset-0">
-            <div className="absolute inset-0 flex gap-3">
-              {["/images/gym_alpha.png", "/images/hero_bg.png", "/images/gym_beta.png", "/images/trainer_vikram.png"].map((src, i) => (
-                <div key={i} className="relative flex-1 min-w-[25%]">
-                  <Image src={src} alt={`Gallery parallax ${i + 1}`} fill className="object-cover" />
-                </div>
-              ))}
-            </div>
-          </GsapParallax>
+        <section className="relative h-[300px] overflow-hidden">
+          <div className="absolute inset-0 flex gap-2">
+            {parallaxImages.map((src, idx) => (
+              <div key={idx} className="relative flex-1 min-w-[25%]">
+                <Image src={src} alt={`Gallery ${idx + 1}`} fill className="object-cover" sizes="25vw" />
+              </div>
+            ))}
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B0B0B] via-transparent to-[#0B0B0B] pointer-events-none" />
         </section>
 
@@ -82,16 +96,20 @@ export default function GalleryPage() {
                     {filtered.map((item, i) => (
                       <motion.div
                         key={item.id}
-                        whileHover={{ scale: 1.03 }}
-                        className={`gallery-tile ${item.height} bg-surface rounded-xl border border-border flex items-center justify-center relative group cursor-pointer overflow-hidden`}
-                        onClick={() => setLightboxIndex(galleryItems.indexOf(item))}
+                        whileHover={{ scale: 1.02 }}
+                        className={`gallery-tile ${item.height} rounded-xl border border-border relative group cursor-pointer overflow-hidden mb-3`}
+                        onClick={() => setLightboxIndex(i)}
                       >
-                        <span className="text-muted text-sm font-sans">[ {item.label} ]</span>
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                          <MagnifyingGlass size={28} className="text-accent" weight="bold" />
+                        <Image
+                          src={item.src}
+                          alt={item.label}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                          <MagnifyingGlassIcon size={28} className="text-white" weight="bold" />
                         </div>
-                        {/* Category Badge */}
                         <span className="absolute bottom-3 left-3 bg-accent text-accent-foreground text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                           {item.category}
                         </span>
@@ -104,17 +122,53 @@ export default function GalleryPage() {
           </div>
         </section>
 
-        {/* Lightbox */}
-        {lightboxIndex !== null && (
-          <Lightbox
-            images={galleryItems.map((item) => ({ label: item.label, category: item.category }))}
-            currentIndex={lightboxIndex}
-            onClose={() => setLightboxIndex(null)}
-            onNav={setLightboxIndex}
-          />
-        )}
+        {/* Inline Lightbox */}
+        <AnimatePresence>
+          {lightboxIndex !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center"
+              onClick={() => setLightboxIndex(null)}
+            >
+              <button className="absolute top-5 right-5 z-10 text-white/70 hover:text-accent transition-colors p-2" onClick={() => setLightboxIndex(null)}>
+                <XIcon size={36} weight="bold" />
+              </button>
+              <button className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 text-white/50 hover:text-accent transition-colors p-2" onClick={(e) => { e.stopPropagation(); goPrev(); }}>
+                <CaretLeftIcon size={44} weight="bold" />
+              </button>
+              <motion.div
+                key={lightboxIndex}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                className="relative w-[85vw] h-[75vh] rounded-xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={filtered[lightboxIndex].src}
+                  alt={filtered[lightboxIndex].label}
+                  fill
+                  className="object-contain"
+                  sizes="85vw"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                  <p className="text-white font-display font-bold text-sm">{filtered[lightboxIndex].label}</p>
+                  <span className="bg-accent/20 text-accent text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mt-1 inline-block">
+                    {filtered[lightboxIndex].category}
+                  </span>
+                </div>
+              </motion.div>
+              <button className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 text-white/50 hover:text-accent transition-colors p-2" onClick={(e) => { e.stopPropagation(); goNext(); }}>
+                <CaretRightIcon size={44} weight="bold" />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* Before/After Transformations */}
+        {/* Transformations */}
         <section className="section-padding bg-surface/30 relative overflow-hidden">
           <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
           <div className="container-custom relative z-10">
@@ -126,8 +180,26 @@ export default function GalleryPage() {
             <GsapReveal animation="fadeUp" staggerSelector=".transform-item" stagger={0.15}>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {transformations.map((t) => (
-                  <div key={t.name} className="transform-item">
-                    <TransformationCard name={t.name} duration={t.duration} program={t.program} />
+                  <div key={t.name} className="transform-item card-glass overflow-hidden group">
+                    <div className="h-[280px] relative overflow-hidden">
+                      <Image
+                        src={t.image}
+                        alt={`${t.name} transformation`}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                      <div className="absolute top-3 right-3">
+                        <span className="label-after">90 Days</span>
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 p-5">
+                        <p className="text-base font-display font-bold text-white">{t.name}</p>
+                        <span className="bg-accent/20 text-accent text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full mt-2 inline-block">
+                          {t.program}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -135,7 +207,7 @@ export default function GalleryPage() {
           </div>
         </section>
 
-        {/* CTA Strip */}
+        {/* CTA */}
         <section className="py-24 bg-[#0B0B0B] relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[300px] bg-accent/10 rounded-full blur-[100px]" />

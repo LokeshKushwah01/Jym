@@ -124,24 +124,24 @@ export const programs = [
 ];
 
 export const galleryItems = [
-  { id: "gl1", label: "Gym Floor", category: "Gym Tour", height: "h-[280px]" },
-  { id: "gl2", label: "Equipment Room", category: "Equipment", height: "h-[360px]" },
-  { id: "gl3", label: "Weight Rack", category: "Equipment", height: "h-[200px]" },
-  { id: "gl4", label: "Group HIIT Class", category: "Classes", height: "h-[280px]" },
-  { id: "gl5", label: "Transformation — Rahul", category: "Transformations", height: "h-[360px]" },
-  { id: "gl6", label: "Annual Fitness Meet", category: "Events", height: "h-[200px]" },
-  { id: "gl7", label: "Cardio Zone", category: "Gym Tour", height: "h-[280px]" },
-  { id: "gl8", label: "Olympic Lifting Area", category: "Equipment", height: "h-[360px]" },
-  { id: "gl9", label: "Yoga Studio", category: "Classes", height: "h-[200px]" },
-  { id: "gl10", label: "Transformation — Priya", category: "Transformations", height: "h-[280px]" },
-  { id: "gl11", label: "Member Day Event", category: "Events", height: "h-[360px]" },
-  { id: "gl12", label: "Transformation — Amit", category: "Transformations", height: "h-[200px]" },
+  { id: "gl1", label: "Gym Floor", category: "Gym Tour", height: "h-[280px]", src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl2", label: "Equipment Room", category: "Equipment", height: "h-[360px]", src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl3", label: "Weight Rack", category: "Equipment", height: "h-[200px]", src: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl4", label: "Group HIIT Class", category: "Classes", height: "h-[280px]", src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl5", label: "Transformation — Rahul", category: "Transformations", height: "h-[360px]", src: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl6", label: "Annual Fitness Meet", category: "Events", height: "h-[200px]", src: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl7", label: "Cardio Zone", category: "Gym Tour", height: "h-[280px]", src: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl8", label: "Olympic Lifting Area", category: "Equipment", height: "h-[360px]", src: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl9", label: "Yoga Studio", category: "Classes", height: "h-[200px]", src: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl10", label: "Transformation — Priya", category: "Transformations", height: "h-[280px]", src: "https://images.unsplash.com/photo-1550345332-09e3ac987658?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl11", label: "Member Day Event", category: "Events", height: "h-[360px]", src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1200&auto=format&fit=crop" },
+  { id: "gl12", label: "Transformation — Amit", category: "Transformations", height: "h-[200px]", src: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1200&auto=format&fit=crop" },
 ];
 
 export const transformations = [
-  { name: "Rahul S.", duration: "90 days", program: "Weight Loss" },
-  { name: "Priya M.", duration: "90 days", program: "Muscle Gain" },
-  { name: "Amit G.", duration: "90 days", program: "Strength Training" },
+  { name: "Rahul S.", duration: "90 days", program: "Weight Loss", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" },
+  { name: "Priya M.", duration: "90 days", program: "Muscle Gain", image: "https://images.unsplash.com/photo-1550345332-09e3ac987658?q=80&w=2070&auto=format&fit=crop" },
+  { name: "Amit G.", duration: "90 days", program: "Strength Training", image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2070&auto=format&fit=crop" },
 ];
 
 export const galleryImages: GalleryImage[] = [
